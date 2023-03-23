@@ -1,0 +1,46 @@
+input, button {
+    margin: 10px;
+}
+
+#container {
+    width: 300px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+.verde {
+    background-color: green;
+}
+
+.paragraf-par {
+    background-color: blue;
+}
+
+.paragraf-impar {
+    background-color: yellow;
+}
+
+.cerc {
+    background-color: black;
+}
+
+#my-list li:last-child {
+    background-color: violet;
+}
+
+p {
+    font-size: 16px;
+    margin: 5px 0;}
+
+button {
+    padding: 10px 20px;
+    background-color: #4285F4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+#element {
+    margin-top: 10px;}
