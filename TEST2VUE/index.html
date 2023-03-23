@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plasare comanda produse</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h2>Plasare comanda produse</h2>
+    <form>
+        <label>Nume produs:</label>
+        <select v-model="selectedProduct">
+            <option v-for="product in products" :value="product.name">{{ product.name }}</option>
+        </select>
+        <br><br>
+        <label>Pretul pentru o cantitate:</label>
+        <input type="number" v-model="pricePerQuantity">
+        <br><br>
+        <label>Numarul de cantitati:</label>
+        <input type="number" v-model="quantity">
+        <br><br>
+        <button @click.prevent="addProduct">Adauga produs</button>
+        <button @click.prevent="resetForm">Resetare</button>
+    </form>
+    <br><br>
+    <table>
+        <thead>
+        <tr>
+            <th>Nr.</th>
+            <th>Nume produs</th>
+            <th>Pretul pentru o cantitate</th>
+            <th>Numarul de cantitati</th>
+            <th>Pretul total</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(product, index) in productsList" :key="index" :class="{'highlight-row': selectedRow === index}" @mouseover="selectedRow = index" @mouseout="selectedRow = null">
+            <td>{{ index + 1 }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.pricePerQuantity }}</td>
+            <td>{{ product.quantity }}</td>
+            <td>{{ product.totalPrice }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            selectedProduct: '',
+            pricePerQuantity: '',
+            quantity: '',
+            productsList: [],
+            selectedRow: null,
+            products: [
+                { name: 'Produs 1', price: 10 },
+                { name: 'Produs 2', price: 20 },
+                { name: 'Produs 3', price: 30 }
+            ]
+        },
+        methods: {
+            addProduct: function() {
+                if (this.selectedProduct === '' || this.pricePerQuantity === '' || this.quantity === '') {
+                    alert('Va rugam completati toate campurile!');
+                } else {
+                    const product = {
+                        name: this.selectedProduct,
+                        pricePerQuantity: this.pricePerQuantity,
+                        quantity: this.quantity,
+                        totalPrice: this.pricePerQuantity * this.quantity
+                    };
+                    this.productsList.push(product);
+                    this.resetForm();
+                }
+            },
+            resetForm: function() {
+                this.selectedProduct = '';
+                this.pricePerQuantity = '';
+                this.quantity = '';
+            }
+        }
+    });
+</script>
+<style>
+    .highlight-row:hover {
+        background-color: #f2f2f2;
+    }
+</style>
+</body>
+</html>
+
+<script src="js.js"></script>
+
+</body>
+</html>
